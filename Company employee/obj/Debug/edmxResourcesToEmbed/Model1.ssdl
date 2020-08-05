@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище employeesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DEPARTMENTS">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPLOYEES">
+    <Key>
+      <PropertyRef Name="employeeID" />
+    </Key>
+    <Property Name="employeeID" Type="int" Nullable="false" />
+    <Property Name="position" Type="int" Nullable="false" />
+    <Property Name="department" Type="int" Nullable="false" />
+    <Property Name="supervisor" Type="int" />
+  </EntityType>
+  <EntityType Name="PERSONAL_DATA">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="birthday" Type="date" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POSITIONS">
+    <Key>
+      <PropertyRef Name="PositionId" />
+    </Key>
+    <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PositionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EMPLOYEES_DEPARTMENTS">
+    <End Role="DEPARTMENTS" Type="Self.DEPARTMENTS" Multiplicity="1" />
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENTS">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES_EMPLOYEES">
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
+    <End Role="EMPLOYEES1" Type="Self.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEES">
+        <PropertyRef Name="employeeID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES1">
+        <PropertyRef Name="supervisor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES_PERSON_DATA">
+    <End Role="PERSONAL_DATA" Type="Self.PERSONAL_DATA" Multiplicity="1" />
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONAL_DATA">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES">
+        <PropertyRef Name="employeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES_POSITIONS">
+    <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="1" />
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSITIONS">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="EMPLOYEES">
+        <PropertyRef Name="position" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище employeesModelContainer">
+    <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PERSONAL_DATA" EntityType="Self.PERSONAL_DATA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_EMPLOYEES_DEPARTMENTS" Association="Self.FK_EMPLOYEES_DEPARTMENTS">
+      <End Role="DEPARTMENTS" EntitySet="DEPARTMENTS" />
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES_EMPLOYEES" Association="Self.FK_EMPLOYEES_EMPLOYEES">
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+      <End Role="EMPLOYEES1" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES_PERSON_DATA" Association="Self.FK_EMPLOYEES_PERSON_DATA">
+      <End Role="PERSONAL_DATA" EntitySet="PERSONAL_DATA" />
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES_POSITIONS" Association="Self.FK_EMPLOYEES_POSITIONS">
+      <End Role="POSITIONS" EntitySet="POSITIONS" />
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

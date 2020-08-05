@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище employeesModelContainer" CdmEntityContainer="employeesEntities">
+    <EntitySetMapping Name="DEPARTMENTS">
+      <EntityTypeMapping TypeName="employeesModel.DEPARTMENTS">
+        <MappingFragment StoreEntitySet="DEPARTMENTS">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEES">
+      <EntityTypeMapping TypeName="employeesModel.EMPLOYEES">
+        <MappingFragment StoreEntitySet="EMPLOYEES">
+          <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="supervisor" ColumnName="supervisor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONAL_DATA">
+      <EntityTypeMapping TypeName="employeesModel.PERSONAL_DATA">
+        <MappingFragment StoreEntitySet="PERSONAL_DATA">
+          <ScalarProperty Name="personID" ColumnName="personID" />
+          <ScalarProperty Name="personName" ColumnName="personName" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSITIONS">
+      <EntityTypeMapping TypeName="employeesModel.POSITIONS">
+        <MappingFragment StoreEntitySet="POSITIONS">
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

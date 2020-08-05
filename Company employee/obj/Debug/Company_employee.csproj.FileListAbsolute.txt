@@ -1,0 +1,5 @@
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.csprojAssemblyReference.cache
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.Form1.resources
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.Properties.Resources.resources
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.csproj.GenerateResource.cache
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.csproj.CoreCompileInputs.cache

@@ -1,0 +1,16 @@
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company employee.csprojAssemblyReference.cache
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.Form1.resources
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company_employee.Properties.Resources.resources
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company employee.csproj.GenerateResource.cache
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company employee.csproj.CoreCompileInputs.cache
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\employees.mdf
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\employees_log.ldf
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\Company employee.exe.config
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\Company employee.exe
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\Company employee.pdb
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company employee.exe
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company employee.pdb
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\EntityFramework.xml
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Maria\source\repos\Company employee\Company employee\obj\Debug\Company employee.csproj.CopyComplete
+C:\Users\Maria\source\repos\Company employee\Company employee\bin\Debug\EntityFramework.dll

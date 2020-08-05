@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="employeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DEPARTMENTS">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_EMPLOYEES_DEPARTMENTS" FromRole="DEPARTMENTS" ToRole="EMPLOYEES" />
+  </EntityType>
+  <EntityType Name="EMPLOYEES">
+    <Key>
+      <PropertyRef Name="employeeID" />
+    </Key>
+    <Property Name="employeeID" Type="Int32" Nullable="false" />
+    <Property Name="position" Type="Int32" Nullable="false" />
+    <Property Name="department" Type="Int32" Nullable="false" />
+    <Property Name="supervisor" Type="Int32" />
+    <NavigationProperty Name="DEPARTMENTS" Relationship="Self.FK_EMPLOYEES_DEPARTMENTS" FromRole="EMPLOYEES" ToRole="DEPARTMENTS" />
+    <NavigationProperty Name="EMPLOYEES1" Relationship="Self.FK_EMPLOYEES_EMPLOYEES" FromRole="EMPLOYEES" ToRole="EMPLOYEES1" />
+    <NavigationProperty Name="EMPLOYEES2" Relationship="Self.FK_EMPLOYEES_EMPLOYEES" FromRole="EMPLOYEES1" ToRole="EMPLOYEES" />
+    <NavigationProperty Name="PERSONAL_DATA" Relationship="Self.FK_EMPLOYEES_PERSON_DATA" FromRole="EMPLOYEES" ToRole="PERSONAL_DATA" />
+    <NavigationProperty Name="POSITIONS" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="EMPLOYEES" ToRole="POSITIONS" />
+  </EntityType>
+  <EntityType Name="PERSONAL_DATA">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_EMPLOYEES_PERSON_DATA" FromRole="PERSONAL_DATA" ToRole="EMPLOYEES" />
+  </EntityType>
+  <EntityType Name="POSITIONS">
+    <Key>
+      <PropertyRef Name="PositionId" />
+    </Key>
+    <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PositionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEES" Relationship="Self.FK_EMPLOYEES_POSITIONS" FromRole="POSITIONS" ToRole="EMPLOYEES" />
+  </EntityType>
+  <Association Name="FK_EMPLOYEES_DEPARTMENTS">
+    <End Role="DEPARTMENTS" Type="Self.DEPARTMENTS" Multiplicity="1" />
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENTS">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES_EMPLOYEES">
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
+    <End Role="EMPLOYEES1" Type="Self.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEES">
+        <PropertyRef Name="employeeID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES1">
+        <PropertyRef Name="supervisor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES_PERSON_DATA">
+    <End Role="PERSONAL_DATA" Type="Self.PERSONAL_DATA" Multiplicity="1" />
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PERSONAL_DATA">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES">
+        <PropertyRef Name="employeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEES_POSITIONS">
+    <End Role="POSITIONS" Type="Self.POSITIONS" Multiplicity="1" />
+    <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSITIONS">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="EMPLOYEES">
+        <PropertyRef Name="position" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="employeesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENTS" />
+    <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" />
+    <EntitySet Name="PERSONAL_DATA" EntityType="Self.PERSONAL_DATA" />
+    <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" />
+    <AssociationSet Name="FK_EMPLOYEES_DEPARTMENTS" Association="Self.FK_EMPLOYEES_DEPARTMENTS">
+      <End Role="DEPARTMENTS" EntitySet="DEPARTMENTS" />
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES_EMPLOYEES" Association="Self.FK_EMPLOYEES_EMPLOYEES">
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+      <End Role="EMPLOYEES1" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES_PERSON_DATA" Association="Self.FK_EMPLOYEES_PERSON_DATA">
+      <End Role="PERSONAL_DATA" EntitySet="PERSONAL_DATA" />
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEES_POSITIONS" Association="Self.FK_EMPLOYEES_POSITIONS">
+      <End Role="POSITIONS" EntitySet="POSITIONS" />
+      <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
